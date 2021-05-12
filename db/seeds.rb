@@ -5,6 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create(email: 'admin@sabak.com', password: '654321', password_confirmation: '654321')
+
 30.times do |i|
-  Course.create(title: Faker::Book.title, description: Faker::Lorem.paragraph_by_chars)
+  Course.create(
+    title: Faker::Book.title,
+    description: Faker::Lorem.paragraph_by_chars,
+    user: User.first
+  )
 end
