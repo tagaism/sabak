@@ -46,7 +46,8 @@
   Popular
 .row{"data-masonry" => "{\"percentPosition\": true }"}
   - @latest_courses.each do |course|
-    = render 'courses/course', course: course
+    .col-sm-4.col-md-3.py-3
+      = render 'courses/course', course: course
 %hr
 %h1
   Top rated

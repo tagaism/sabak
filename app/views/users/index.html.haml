@@ -1,0 +1,4 @@
+.row{"data-masonry" => "{\"percentPosition\": true }"}
+  - @users.each do |user|
+    .col-sm-4.col-md-3.py-3
+      = render 'user', user: user

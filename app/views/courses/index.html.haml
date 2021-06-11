@@ -2,7 +2,8 @@
   Courses:
   = @courses.count
 
-//row-columns
+//card-columns
 .row{"data-masonry" => "{\"percentPosition\": true }"}
   - @courses.each do |course|
-    = render 'course', course: course
+    .col-sm-4.col-md-3.py-3
+      = render 'course', course: course
