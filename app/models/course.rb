@@ -1,5 +1,7 @@
 class Course < ApplicationRecord
   extend FriendlyId
+  include PublicActivity::Model
+
   friendly_id :title, use: :slugged
 
   validates :title, :description, :short_description, :language, :price, :level, presence: true
@@ -17,4 +19,7 @@ class Course < ApplicationRecord
   def self.levels
     LEVELS.map{ |l| [l, l] }
   end
+  
+  # activities
+  tracked owner: Proc.new { |controller, model| controller.current_user }
 end
