@@ -13,16 +13,20 @@
               Home
           %li.nav-item
             = link_to courses_path, class: "nav-link #{'active fw-bold' if current_page?(courses_path)}" do
-              .fa.fa-book
+              .fa.fa-graduation-cap
               Courses
           %li.nav-item
             = link_to new_course_path, class: "nav-link #{'active fw-bold' if current_page?(new_course_path)}" do
               .fa.fa-plus
               New courses
+          %li.nav-item
+            = link_to users_path, class: "nav-link #{'active fw-bold' if current_page?(users_path)}" do
+              .fa.fa-users
+              Users
         %ul.navbar-nav.me-left
-          = form_tag(courses_path, method: :get) do
+          = search_form_for @ransack_courses, as: :courses_search, url: :courses do |f|
             .input-group
-              = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+              = f.search_field :title_cont, placeholder: 'Find a course', class: 'form-control-sm'
               %span.input-group-append
                 %button.btn.btn-primary.btn-sm{:type => "submit"}
                   %span.fa.fa-search{"area-hidden" => "true"}

@@ -11,6 +11,10 @@ User.create(email: 'admin@sabak.com', password: '654321', password_confirmation:
   Course.create(
     title: Faker::Book.title,
     description: Faker::Lorem.paragraph_by_chars,
-    user: User.first
+    user: User.first,
+    short_description: Faker::Quote.famous_last_words,
+    language: Faker::ProgrammingLanguage.name,
+    level: 'Beginner',
+    price: Faker::Number.between(from: 1000, to: 5000)
   )
 end
