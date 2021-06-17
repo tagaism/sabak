@@ -1,0 +1,9 @@
+.card
+  .card-header
+    %h1
+      Editing user role for
+      = @user.email
+  .card-body
+    = render 'form'
+
+= link_to 'Cancel', users_path
