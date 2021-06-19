@@ -15,14 +15,16 @@
             = link_to courses_path, class: "nav-link #{'active fw-bold' if current_page?(courses_path)}" do
               .fa.fa-graduation-cap
               Courses
-          %li.nav-item
-            = link_to new_course_path, class: "nav-link #{'active fw-bold' if current_page?(new_course_path)}" do
-              .fa.fa-plus
-              New courses
-          %li.nav-item
-            = link_to users_path, class: "nav-link #{'active fw-bold' if current_page?(users_path)}" do
-              .fa.fa-users
-              Users
+          - if current_user.has_role?(:teacher)
+            %li.nav-item
+              = link_to new_course_path, class: "nav-link #{'active fw-bold' if current_page?(new_course_path)}" do
+                .fa.fa-plus
+                New courses
+          - if current_user.has_role?(:admin)
+            %li.nav-item
+              = link_to users_path, class: "nav-link #{'active fw-bold' if current_page?(users_path)}" do
+                .fa.fa-users
+                Users
         %ul.navbar-nav.me-left
           = search_form_for @ransack_courses, as: :courses_search, url: :courses do |f|
             .input-group
@@ -30,10 +32,11 @@
               %span.input-group-append
                 %button.btn.btn-primary.btn-sm{:type => "submit"}
                   %span.fa.fa-search{"area-hidden" => "true"}
-          %li.nav-item
-            = link_to home_activities_path, class: "nav-link #{'active fw-bold' if current_page?(home_activities_path)}" do
-              .fa.fa-bell
-              Activities
+          - if current_user.has_role?(:admin)
+            %li.nav-item
+              = link_to home_activities_path, class: "nav-link #{'active fw-bold' if current_page?(home_activities_path)}" do
+                .fa.fa-bell
+                Activities
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
               .fa.fa-user

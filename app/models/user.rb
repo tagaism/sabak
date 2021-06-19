@@ -7,6 +7,8 @@ class User < ApplicationRecord
   rolify
   has_many :courses
 
+  validate :must_have_role, on: :update
+
   after_create :assign_default_role
 
   def to_s
@@ -17,5 +19,9 @@ class User < ApplicationRecord
   
   def assign_default_role
     self.add_role :student if self.roles.blank?
+  end
+  
+  def must_have_role
+    errors.add(:roles, 'Must have at least one role.') if roles.empty?
   end
 end
