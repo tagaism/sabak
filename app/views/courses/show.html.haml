@@ -2,4 +2,14 @@
 \/
 = @course.title
 %p
-= render 'course', course: @course
+.row
+  .col-lg-6
+    = render 'course', course: @course
+  .col-lg-6
+    - if @lessons.count > 0
+      - @lessons.each do |lesson|
+        = render 'lessons/lesson', lesson: lesson
+        %p
+    - else
+      %h4.text-center
+        There is no any lesson.

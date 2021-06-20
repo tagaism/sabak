@@ -1,0 +1,12 @@
+.card
+  .card-header
+    - if current_page?(course_path)
+      = link_to lesson.title, lesson
+    - else
+      = lesson.title
+  .card-body
+    = lesson.content
+    = lesson.course
+  .card-footer
+    = link_to 'Edit', edit_lesson_path(lesson), class: 'btn btn-sm btn-warning'
+    = link_to 'Delete', lesson, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger'

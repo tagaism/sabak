@@ -7,6 +7,7 @@ class Course < ApplicationRecord
   validates :title, :description, :short_description, :language, :price, :level, presence: true
   
   belongs_to :user
+  has_many :lessons, dependent: :destroy
   
   has_rich_text :description
 
@@ -18,6 +19,10 @@ class Course < ApplicationRecord
   LEVELS = ["Beginner", "Intermediate", "Advanced"]
   def self.levels
     LEVELS.map{ |l| [l, l] }
+  end
+  
+  def to_s
+    title
   end
   
   # activities

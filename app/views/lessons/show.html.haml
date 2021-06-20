@@ -1,0 +1,10 @@
+= link_to 'Courses', courses_path
+\/
+= link_to @lesson.course, course_path(@lesson.course)
+\/
+= @lesson.title
+%p#notice= notice
+
+= render 'lesson', lesson: @lesson
+
+= link_to 'Back to course', course_path(@lesson.course)
