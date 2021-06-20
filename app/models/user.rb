@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  def online?
+    updated_at > 2.minutes.ago
+  end
+
   def to_s
     email
   end
